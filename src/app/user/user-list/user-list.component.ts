@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import 'rxjs/add/operator/map';
 import { AppState } from '../../app.state';
 
 @Component({
@@ -17,5 +18,4 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

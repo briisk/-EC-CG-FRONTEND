@@ -11,11 +11,11 @@ export class UserEffects {
     private actions$: Actions
   ) { }
 
-  @Effect() fetchActiveUsers$ = this.actions$
-    .ofType(userActions.FETCH_ACTIVE_USERS)
-    .map(action => JSON.stringify(action.payload))
-    .switchMap(payload => this.http.post('/fetch', payload)
-      .map(res => userActions.fetchActiveUsersSuccess(res.json()))
-      .catch(() => Observable.of(userActions.fetchActiveUsersFailed()))
-    );
+  // @Effect() fetchActiveUsers$ = this.actions$
+  //   .ofType(userActions.FETCH_ACTIVE_USERS)
+  //   .map(action => JSON.stringify(action.payload))
+  //   .switchMap(payload => this.http.post('/fetch', payload)
+  //     .map(res => userActions.fetchActiveUsersSuccess(res.json()))
+  //     .catch(() => Observable.of(userActions.fetchActiveUsersFailed()))
+  //   );
 }
