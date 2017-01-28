@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import {
   LOGIN_USER,
+  CONNECTION_FAIL,
 } from './auth.actions';
 
 import { fromJS, Map } from 'immutable';
@@ -16,6 +17,10 @@ export function authReducer(state: Map<string, any> = INITIAL_STATE, action: Act
     [LOGIN_USER]: () => {
       return state
         .setIn(['auth', 'currentUser'], action.payload.nick)
+    },
+    [CONNECTION_FAIL]: () => {
+      console.log('Fail to establish connection with remote server');
+      return state
     },
   };
 
