@@ -1,6 +1,6 @@
 <div class="container board">
   <div class="row" *ngFor="let column of board | async; let index = index">
-    <div class="col-xs-4 box" (click)="handleClick(index, index2)" *ngFor="let box of column; let index2 = index">
+    <div class="col-xs-4 box" (click)="!box.playerId && handleClick(index, index2)" *ngFor="let box of column; let index2 = index">
       <div class="span-container" *ngIf="box.playerId === 'circle'"><span>&#x26C4;</span></div>
       <div class="span-container" *ngIf="box.playerId === 'cross'"><span>&#x2694;</span></div>
     </div>
