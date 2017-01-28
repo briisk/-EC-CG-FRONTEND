@@ -1,3 +1,4 @@
+import { UserModule } from './user/user.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -26,7 +27,8 @@ import { LoginScreenComponent } from './user/login-screen/login-screen.component
     StoreModule.provideStore({ counter: counterReducer, board: boardReducer }),
     StoreDevtoolsModule.instrumentOnlyWithExtension({
       maxAge: 5
-    })
+    }),
+    UserModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
