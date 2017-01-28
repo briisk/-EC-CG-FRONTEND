@@ -6,13 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer, CounterComponent } from './counter';
 import { AppComponent } from './app.component';
-import { CCUserListComponent } from './user-list/user-list.component';
+import { UserListComponent } from './user-list/user-list.component';
 import { LoginScreenComponent } from './login-screen/login-screen.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
-    CCUserListComponent,
+    UserListComponent,
     AppComponent,
     CounterComponent,
     LoginScreenComponent
