@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer, CounterComponent } from './counter';
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BoardComponent } from './board/board.component';
 import { boardReducer } from './board';
 import { UserListComponent } from './user/user-list/user-list.component';
-import { LoginScreenComponent } from './user/login-screen/login-screen.component';
 import { PhoenixChannels } from './helpers';
+import { userReducer } from './user/user.reducer';
+import { authReducer } from './auth/auth.reducer';
 
 export function phoenixChannelsFactory() {
   return new PhoenixChannels('ws://192.168.0.117:4000/socket');
@@ -28,11 +30,17 @@ export function phoenixChannelsFactory() {
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    StoreModule.provideStore({ counter: counterReducer, board: boardReducer }),
+    StoreModule.provideStore({
+      counter: counterReducer,
+      board: boardReducer,
+      users: userReducer,
+      auth: authReducer,
+    }),
     StoreDevtoolsModule.instrumentOnlyWithExtension({
       maxAge: 5
     }),
     UserModule,
+    AuthModule,
   ],
   providers: [{
     provide: PhoenixChannels,

@@ -19,7 +19,6 @@ export class AppComponent {
     this.gameChannel.join();
     const phoenixObservable = this.gameChannel.observeMessage('new_msg');
     phoenixObservable.subscribe(item => console.log(item));
-   
   }
 
   click() {
