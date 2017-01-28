@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class CCUserListComponent implements OnInit {
+export class UserListComponent implements OnInit {
 
   private users$ = Observable.of([
     { id: 0, nickName: 'Damian' },
