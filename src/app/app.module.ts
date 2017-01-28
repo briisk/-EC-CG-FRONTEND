@@ -5,9 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer, CounterComponent } from './counter';
-
 import { AppComponent } from './app.component';
-import { UserListComponent } from './src/app/user-list/user-list.component';
 import { CCUserListComponent } from './user-list/user-list.component';
 
 @NgModule({
