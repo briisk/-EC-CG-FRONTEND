@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UserListComponent implements OnInit {
 
-  private users$ = Observable.of([
+  users$ = Observable.of([
     { id: 0, nickName: 'Damian' },
     { id: 1, nickName: 'Daniel' },
     { id: 2, nickName: 'Asia' },
