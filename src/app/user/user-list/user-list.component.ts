@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../app.state';
 
 @Component({
   selector: 'ecc-user-list',
@@ -15,7 +17,9 @@ export class UserListComponent implements OnInit {
     { id: 3, nickName: 'Przemek' },
   ]);
 
-  constructor() { }
+  constructor(private store: Store<AppState>) {
+    store.select('user').subscribe(console.log);
+  }
 
   ngOnInit() {
   }
