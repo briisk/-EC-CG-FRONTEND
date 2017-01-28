@@ -26,7 +26,7 @@ export class BoardComponent implements OnInit {
   }
 
   handleClick(column, row) {
-    this.store.dispatch(setPawn({ column, row }));
+    // this.store.dispatch(setPawn({ column, row }));
   }
 
 }

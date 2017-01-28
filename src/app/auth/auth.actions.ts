@@ -3,9 +3,7 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const CONNECTION_FAIL = 'CONNECTION_FAIL';
 
 export function newAction(type) {
-  return (payload?) => {
-    return ({ payload, type });
-  }
+  return (payload?) => ({ payload, type });
 }
 
 export const loginUser = newAction('LOGIN_USER');

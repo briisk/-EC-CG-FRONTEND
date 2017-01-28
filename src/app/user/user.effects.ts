@@ -4,7 +4,8 @@ import { fetchActiveUsersSuccess, fetchActiveUsersFailed } from './user.actions'
 import { PhoenixChannels } from '../helpers/sockets';
 import { LOGIN_USER, SET_CURRENT_USER, setCurrentUser, connectionFail } from '../auth/auth.actions';
 import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+
 @Injectable()
 export class UserEffects {
   public gameChannel;
@@ -21,18 +22,16 @@ export class UserEffects {
   @Effect() loginUser$ = this.actions$
     .ofType(LOGIN_USER)
     .map(action => JSON.stringify(action.payload))
-    .switchMap(payload =>  this.gameChannel.join()
+    .switchMap(payload => this.gameChannel.join()
       .map(res => setCurrentUser(res))
-      //TODO FIX REDIRECT
-      .do(() => {this.router.navigate(['/user-list'])})
       .catch(() => Observable.of(connectionFail()))
     );
 
   @Effect() fetchActiveUsers$ = this.actions$
     .ofType(SET_CURRENT_USER)
-    .map(() => {
-      this.gameChannel.observeMessage('new_msg')
+    .switchMap(() => {
+      return this.gameChannel.observeMessage('new_msg')
         .map(msg => fetchActiveUsersSuccess(msg))
-        .catch((err) => fetchActiveUsersFailed(err));
+        .catch((err) => Observable.of(fetchActiveUsersFailed(err)));
     });
 }

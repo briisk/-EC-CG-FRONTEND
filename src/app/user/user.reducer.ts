@@ -9,17 +9,13 @@ const INITIAL_STATE: Map<string, any> = fromJS({
   isSuccess: false,
   isError: false,
   errors: [],
-  items: [
-    { id: 0, nickName: 'Damian' },
-    { id: 1, nickName: 'Daniel' },
-    { id: 2, nickName: 'Asia' },
-    { id: 3, nickName: 'Przemek' }
-  ]
+  items: []
 });
 
 export function userReducer(state: Map<string, any> = INITIAL_STATE, action: Action): Map<string, any> {
   const actions = {
     [FETCH_ACTIVE_USERS_SUCCESS]: () => {
+      console.log(action.payload);
       return state
         .set('isSuccess', true)
         .set('items', action.payload);

@@ -18,15 +18,10 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private phoenixChannels: PhoenixChannels
   ) {
     this.users$ = store.select('users')
       .filter((userState: Map<string, any>) => !!userState && userState.size > 0)
       .map((userState: Map<string, any>) => userState.get('items'));
-
-    this.gameChannel = phoenixChannels.channel('game:lobby');
-    this.gameChannel.join();
-    const phoenixObservable = this.gameChannel.observeMessage('new_msg');
   }
 
   ngOnInit() {

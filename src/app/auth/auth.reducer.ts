@@ -8,11 +8,10 @@ import {
 import { fromJS, Map } from 'immutable';
 
 const INITIAL_STATE: Map<string, any> = fromJS({
-  auth: {
-    currentUser: {
-      nick: undefined,
-      id: undefined,
-    }
+  currentUser: {
+    nick: undefined,
+    id: undefined,
+    isSuccess: false
   }
 });
 
@@ -21,17 +20,17 @@ export function authReducer(state: Map<string, any> = INITIAL_STATE, action: Act
     [LOGIN_USER]: () => {
       console.log('payload', action.payload);
       return state
-        .setIn(['auth', 'currentUser', 'nick'], action.payload.nick)
+        .setIn(['auth', 'currentUser', 'nickName'], action.payload.nick);
     },
     [SET_CURRENT_USER]: () => {
       console.log('payload', action.payload);
       return state
-      .setIn(['auth', 'currentUser', 'id'], action.payload)
+        .setIn(['auth', 'currentUser', 'id'], action.payload);
 
     },
     [CONNECTION_FAIL]: () => {
       console.log('Fail to establish connection with remote server');
-      return state
+      return state;
     },
   };
 

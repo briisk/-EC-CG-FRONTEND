@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app.state';
 import { loginUser } from '../auth.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ecc-login-screen',
@@ -10,17 +11,30 @@ import { loginUser } from '../auth.actions';
 })
 export class LoginScreenComponent {
   private nick: string;
+  private isLoginSuccess$;
 
-  constructor(private store: Store<AppState>) {
+  constructor(
+    private store: Store<AppState>,
+    private router: Router
+  ) {
+    this.isLoginSuccess$ = store.select('auth')
+      .filter((userState: Map<string, any>) => !!userState && userState.size > 0)
+      .do((auth: any) => auth.toJS())
+      .map((userState: any) => userState.getIn(['currentUser', 'isSuccess']));
+
+    this.isLoginSuccess$
+      .filter(Boolean)
+      .do(console.log)
+      .subscribe(() => this.router.navigate(['/user-list']));
   }
 
-  //TODO rewrite for reactive components.
+  // TODO rewrite for reactive components.
   registerUser(event: Event) {
     event.preventDefault();
-    this.store.dispatch(loginUser({nick: this.nick}))
+    this.store.dispatch(loginUser({ nick: this.nick }));
   }
 
-  onKey(event:any) {
+  onKey(event: any) {
     this.nick = event.target.value;
   }
 }

@@ -13,11 +13,11 @@
 
     <div class="row" *ngFor="let user of users$ | async">
       <div class="cell">
-        {{ user.get('nickName') }}
+        {{ user.get('id') }}
       </div>
 
       <div class="cell">
-        <button (click)="play(user.get('nickName'))">Send game request</button>
+        <button>Send game request</button>
       </div>
     </div>
   </div>
