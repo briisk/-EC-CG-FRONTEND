@@ -18,15 +18,6 @@ export class UserEffects {
     this.gameChannel = phoenixChannels.channel('game:lobby');
   }
 
-  @Effect() fetchActiveUsers$ = this.actions$
-    .ofType(SET_CURRENT_USER)
-    .map(() => {
-      this.gameChannel.observeMessage('new_msg')
-        .map(msg => fetchActiveUsersSuccess(msg))
-        .catch((err) => fetchActiveUsersFailed(err));
-    });
-
-
   @Effect() loginUser$ = this.actions$
     .ofType(LOGIN_USER)
     .map(action => JSON.stringify(action.payload))
@@ -35,5 +26,13 @@ export class UserEffects {
       //TODO FIX REDIRECT
       .do(() => {this.router.navigate(['/user-list'])})
       .catch(() => Observable.of(connectionFail()))
-  )
+    );
+
+  @Effect() fetchActiveUsers$ = this.actions$
+    .ofType(SET_CURRENT_USER)
+    .map(() => {
+      this.gameChannel.observeMessage('new_msg')
+        .map(msg => fetchActiveUsersSuccess(msg))
+        .catch((err) => fetchActiveUsersFailed(err));
+    });
 }

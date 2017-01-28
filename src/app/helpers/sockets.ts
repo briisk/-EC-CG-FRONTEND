@@ -40,7 +40,7 @@ export class PhoenixChannel {
   }
 
   join(options = {}) {
-    let joined = this.channel.join();
+    let joined = this.channel.join(options);
     return new Observable( (observer) => {
       joined
         .receive("ok", resp => {
