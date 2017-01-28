@@ -1,0 +1,9 @@
+@import "../../../assets/colors";
+
+.login-form {
+  border: $blue 3px solid;
+  background-color: $background;
+  border-radius: 15px;
+  padding: 50px;
+  margin: 100px auto;
+}
