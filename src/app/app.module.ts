@@ -6,8 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer, CounterComponent } from './counter';
 import { AppComponent } from './app.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { LoginScreenComponent } from './login-screen/login-screen.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { LoginScreenComponent } from './user/login-screen/login-screen.component';
 
 @NgModule({
   declarations: [
