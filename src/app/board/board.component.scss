@@ -1,11 +1,18 @@
 .board {
-  .column {
-    display: block;
-    .row {
-      display: inline-block;
-      .box {
-        margin: 10px;
-        padding: 10px;
+  height: 100vh;
+  width: 100vh;
+
+  .row {
+    .box {
+      border: 2px solid purple;
+      width: 30vh;
+      height: 30vh;
+
+      .span-container {
+        height: 100%;
+        text-align: center;
+        line-height: calc(30vh - 20px);
+        font-size: 80px;
       }
     }
   }

@@ -1,7 +1,8 @@
-<div class="board">
-  <div class="column" *ngFor="let column of board | async; let index = index">
-    <div class="row" *ngFor="let box of column; let index2 = index">
-      <span class="box" (click)="handleClick(index, index2)">{{ box.playerId ? box.playerId : 'none' }} </span>
+<div class="container board">
+  <div class="row" *ngFor="let column of board | async; let index = index">
+    <div class="col-xs-4 box" (click)="handleClick(index, index2)" *ngFor="let box of column; let index2 = index">
+      <div class="span-container" *ngIf="box.playerId === 'circle'"><span>&#x26C4;</span></div>
+      <div class="span-container" *ngIf="box.playerId === 'cross'"><span>&#x2694;</span></div>
     </div>
   </div>
 </div>
