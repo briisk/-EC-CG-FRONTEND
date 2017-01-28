@@ -20,7 +20,7 @@ export class LoginScreenComponent {
     this.isLoginSuccess$ = store.select('auth')
       .filter((authState: Map<string, any>) => !!authState && authState.size > 0)
       .do((auth: any) => console.log(auth.toJS()))
-      .map((authState: any) => authState.getIn(['auth', 'currentUser', 'isSuccess']));
+      .map((authState: any) => authState.getIn(['currentUser', 'isSuccess']));
 
     this.isLoginSuccess$
       .do(console.log)
