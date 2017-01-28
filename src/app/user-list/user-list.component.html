@@ -1,3 +1,26 @@
-<p>
-  user-list works!
-</p>
+<div class="wrapper">
+  <div class="table">
+
+    <div class="row header">
+      <div class="cell">
+        Nickname
+      </div>
+
+      <div class="cell">
+        Call to action
+      </div>
+    </div>
+
+    <div class="row" *ngFor="let user of (users$ | async)">
+      <div class="cell">
+        {{ user.nickName }}
+      </div>
+
+      <div class="cell">
+        zagraj
+      </div>
+    </div>
+
+
+  </div>
+</div>
