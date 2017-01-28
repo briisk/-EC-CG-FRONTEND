@@ -16,10 +16,8 @@ import { userReducer } from './user/user.reducer';
 
 @NgModule({
   declarations: [
-    UserListComponent,
     AppComponent,
     CounterComponent,
-    LoginScreenComponent,
     BoardComponent
   ],
   imports: [
