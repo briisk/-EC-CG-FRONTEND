@@ -15,7 +15,7 @@ const initState: Map<string, any> = fromJS({
 
 export function boardReducer(state = initState, action: Action) {
   const actions = {
-    [SET_PAWN]: () => state.setIn(['boxes', action.payload.column, action.payload.row, 'playerId'], action.payload.user),
+    [SET_PAWN]: () => state.setIn(['boxes', action.payload.column, action.payload.row, 'playerId'], state.getIn(['player1', 'color'])),
     [SET_PLAYER1]: () => state.set('player1', action.payload.player),
     [SET_PLAYER2]: () => state.set('player2', action.payload.player),
   };

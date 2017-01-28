@@ -1,3 +1,4 @@
+import { UserModule } from './user/user.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -33,7 +34,8 @@ import { userReducer } from './user/user.reducer';
     }),
     StoreDevtoolsModule.instrumentOnlyWithExtension({
       maxAge: 5
-    })
+    }),
+    UserModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
