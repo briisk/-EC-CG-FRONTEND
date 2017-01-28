@@ -8,6 +8,7 @@ import { counterReducer, CounterComponent } from './counter';
 import { AppComponent } from './app.component';
 import { CCUserListComponent } from './user-list/user-list.component';
 import { LoginScreenComponent } from './login-screen/login-screen.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,10 @@ import { LoginScreenComponent } from './login-screen/login-screen.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    StoreModule.provideStore({ counter: counterReducer })
+    StoreModule.provideStore({ counter: counterReducer }),
+    StoreDevtoolsModule.instrumentOnlyWithExtension({
+      maxAge: 5
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
