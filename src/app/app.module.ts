@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer, CounterComponent } from './counter';
 
 import { AppComponent } from './app.component';
 import { UserListComponent } from './src/app/user-list/user-list.component';
@@ -10,15 +12,16 @@ import { CCUserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
     CCUserListComponent,
-    CCUserListComponent
+    AppComponent,
+    CounterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.provideStore({ counter: counterReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]
