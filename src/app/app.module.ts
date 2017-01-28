@@ -28,7 +28,7 @@ import { userReducer } from './user/user.reducer';
     StoreModule.provideStore({
       counter: counterReducer,
       board: boardReducer,
-      user: userReducer
+      users: userReducer
     }),
     StoreDevtoolsModule.instrumentOnlyWithExtension({
       maxAge: 5

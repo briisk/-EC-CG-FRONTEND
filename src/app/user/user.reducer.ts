@@ -7,34 +7,37 @@ import {
 import { fromJS, Map } from 'immutable';
 
 const INITIAL_STATE: Map<string, any> = fromJS({
-  users: {
-    isPending: false,
-    isSuccess: false,
-    isError: false,
-    errors: [],
-    items: []
-  }
+  isPending: false,
+  isSuccess: false,
+  isError: false,
+  errors: [],
+  items: [
+    { id: 0, nickName: 'Damian' },
+    { id: 1, nickName: 'Daniel' },
+    { id: 2, nickName: 'Asia' },
+    { id: 3, nickName: 'Przemek' }
+  ]
 });
 
 export function userReducer(state: Map<string, any> = INITIAL_STATE, action: Action): Map<string, any> {
   const actions = {
     [FETCH_ACTIVE_USERS]: () => {
       return state
-        .setIn(['users', 'isPending'], true)
-        .setIn(['users', 'isSuccess'], false)
-        .setIn(['users', 'isError'], false);
+        .set('isPending', true)
+        .set('isSuccess', false)
+        .set('isError', false);
     },
     [FETCH_ACTIVE_USERS_SUCCESS]: () => {
       return state
-        .setIn(['users', 'isPending'], false)
-        .setIn(['users', 'isSuccess'], true)
-        .setIn(['users', 'items'], action.payload);
+        .set('isPending', false)
+        .set('isSuccess', true)
+        .set('items', action.payload);
     },
     [FETCH_ACTIVE_USERS_FAILED]: () => {
       return state
-        .setIn(['users', 'isPending'], false)
-        .setIn(['users', 'isError'], true)
-        .setIn(['users', 'errors'], action.payload);
+        .set('isPending', false)
+        .set('isError', true)
+        .set('errors', action.payload);
     },
   };
 
