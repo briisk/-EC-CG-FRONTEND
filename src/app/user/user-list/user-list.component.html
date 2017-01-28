@@ -5,11 +5,22 @@
       <div class="cell">
         Nickname
       </div>
+
+      <div class="cell">
+        Call to action
+      </div>
     </div>
 
     <div class="row" *ngFor="let user of (users$ | async)">
-      {{ user.nickName }}
+      <div class="cell">
+        {{ user.nickName }}
+      </div>
+
+      <div class="cell">
+        <button> zagraj </button>
+      </div>
     </div>
+
 
   </div>
 </div>

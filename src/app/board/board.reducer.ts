@@ -4,8 +4,12 @@ import { SET_PAWN, SET_PLAYER1, SET_PLAYER2 } from './board.actions';
 import { fromJS, Map } from 'immutable';
 
 const initState: Map<string, any> = fromJS({
-  player1: undefined,
-  player2: undefined,
+  player1: {
+    color: 'red',
+  },
+  player2: {
+    color: 'blue',
+  },
   boxes: Array.from({ length: 3 }, () => Array.from({ length: 3 }, () => ({ playerId: '' }))),
 });
 

@@ -1,7 +1,7 @@
 <div class="board">
   <div class="column" *ngFor="let column of board | async; let index = index">
     <div class="row" *ngFor="let box of column; let index2 = index">
-      <span class="box" >{{ box.playerId ? box.playerId : 'none' }} </span>
+      <span class="box" (click)="handleClick(index, index2)">{{ box.playerId ? box.playerId : 'none' }} </span>
     </div>
   </div>
 </div>
