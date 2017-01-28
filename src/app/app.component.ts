@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { createSocket } from './helpers';
+import { PhoenixChannels } from './helpers';
 
 @Component({
   selector: 'ecc-root',
@@ -9,27 +10,19 @@ import { createSocket } from './helpers';
 export class AppComponent {
   title = 'ecc works!';
   public socket;
+  public gameChannel
 
-  constructor() {
-    // const socket = createSocket('ws://echo.websocket.org');
-    this.socket = createSocket('ws://192.168.0.117:4000/socket/websocket');
-    setTimeout(() => {
-      
-
-    }, 1000)
-
-    // setTimeout(() => {
-    //   socket.next('zxc');
-
-    // }, 5000)
-
-    this.socket.subscribe((item) => console.log(item));
-    // socket.next('asd');
-
+  constructor(
+    phoenixChannels: PhoenixChannels
+  ) {
+    this.gameChannel = phoenixChannels.channel('game:lobby');
+    this.gameChannel.join();
+    const phoenixObservable = this.gameChannel.observeMessage('new_msg');
+    phoenixObservable.subscribe(item => console.log(item));
+   
   }
 
   click() {
-    console.log('asd')
-    this.socket.next({"topic":"game:lobby", "event":"phx_join", "payload": {"user":"%%ts_user_server:get_unique_id%%"}, "ref":"1"});
+    this.gameChannel.send('new_msg', { body: 'asd' });
   }
 }
