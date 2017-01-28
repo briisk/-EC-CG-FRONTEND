@@ -11,14 +11,13 @@ import { AuthModule } from './auth/auth.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BoardComponent } from './board/board.component';
 import { boardReducer } from './board';
-import { UserListComponent } from './user/user-list/user-list.component';
 import { PhoenixChannels } from './helpers';
 import { userReducer } from './user/user.reducer';
 import { authReducer } from './auth/auth.reducer';
 
 export function phoenixChannelsFactory() {
   return new PhoenixChannels('ws://192.168.0.117:4000/socket');
-};
+}
 @NgModule({
   declarations: [
     AppComponent,

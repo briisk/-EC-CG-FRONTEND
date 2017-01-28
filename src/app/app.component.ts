@@ -10,7 +10,7 @@ import { PhoenixChannels } from './helpers';
 export class AppComponent {
   title = 'ecc works!';
   public socket;
-  public gameChannel
+  public gameChannel;
 
   constructor(
     phoenixChannels: PhoenixChannels

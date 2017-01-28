@@ -1,21 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { Actions, Effect } from '@ngrx/effects';
+import { fetchActiveUsersSuccess, fetchActiveUsersFailed } from './user.actions';
+import { PhoenixChannels } from '../helpers/sockets';
+import { LOGIN_USER, SET_CURRENT_USER, setCurrentUser, connectionFail } from '../auth/auth.actions';
 import { Observable } from 'rxjs/Observable';
-import * as userActions from './user.actions';
 
 @Injectable()
 export class UserEffects {
-  constructor(
-    private http: Http,
-    private actions$: Actions
-  ) { }
+  public gameChannel;
+  public socket;
 
-  // @Effect() fetchActiveUsers$ = this.actions$
-  //   .ofType(userActions.FETCH_ACTIVE_USERS)
-  //   .map(action => JSON.stringify(action.payload))
-  //   .switchMap(payload => this.http.post('/fetch', payload)
-  //     .map(res => userActions.fetchActiveUsersSuccess(res.json()))
-  //     .catch(() => Observable.of(userActions.fetchActiveUsersFailed()))
-  //   );
+  constructor(
+    private actions$: Actions,
+    private phoenixChannels: PhoenixChannels
+  ) {
+    this.gameChannel = phoenixChannels.channel('game:lobby');
+  }
+
+  @Effect() loginUser$ = this.actions$
+    .ofType(LOGIN_USER)
+    .do(() => console.log('dziala'))
+    .map(action => JSON.stringify(action.payload))
+    .switchMap(payload =>  this.gameChannel.join()
+      .map(res => setCurrentUser(res))
+      .catch(() => Observable.of(connectionFail()))
+    );
+
+  @Effect() fetchActiveUsers$ = this.actions$
+    .ofType(SET_CURRENT_USER)
+    .map(() => {
+      this.gameChannel.observeMessage('new_msg')
+        .map(msg => fetchActiveUsersSuccess(msg))
+        .catch((err) => fetchActiveUsersFailed(err));
+    });
 }
