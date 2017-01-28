@@ -7,12 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer, CounterComponent } from './counter';
 import { AppComponent } from './app.component';
-import { UserListComponent } from './user/user-list/user-list.component';
-import { LoginScreenComponent } from './user/login-screen/login-screen.component';
+import { AuthModule } from './auth/auth.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BoardComponent } from './board/board.component';
 import { boardReducer } from './board';
 import { userReducer } from './user/user.reducer';
+import { authReducer } from './auth/auth.reducer';
 
 @NgModule({
   declarations: [
@@ -28,12 +28,14 @@ import { userReducer } from './user/user.reducer';
     StoreModule.provideStore({
       counter: counterReducer,
       board: boardReducer,
-      users: userReducer
+      users: userReducer,
+      auth: authReducer,
     }),
     StoreDevtoolsModule.instrumentOnlyWithExtension({
       maxAge: 5
     }),
     UserModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
