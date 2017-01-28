@@ -6,22 +6,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer, CounterComponent } from './counter';
 import { AppComponent } from './app.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BoardComponent } from './board/board.component';
+import { boardReducer } from './board';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { LoginScreenComponent } from './user/login-screen/login-screen.component';
 
 @NgModule({
   declarations: [
-    UserListComponent,
     AppComponent,
     CounterComponent,
-    LoginScreenComponent
+    BoardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    StoreModule.provideStore({ counter: counterReducer })
+    StoreModule.provideStore({ counter: counterReducer, board: boardReducer }),
+    StoreDevtoolsModule.instrumentOnlyWithExtension({
+      maxAge: 5
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
