@@ -15,10 +15,10 @@ export class AppComponent {
   constructor(
     phoenixChannels: PhoenixChannels
   ) {
-    this.gameChannel = phoenixChannels.channel('game:lobby');
-    this.gameChannel.join();
-    const phoenixObservable = this.gameChannel.observeMessage('new_msg');
-    phoenixObservable.subscribe(item => console.log(item));
+    // this.gameChannel = phoenixChannels.channel('game:lobby');
+    // this.gameChannel.join();
+    // const phoenixObservable = this.gameChannel.observeMessage('new_msg');
+    // phoenixObservable.subscribe(item => console.log(item));
   }
 
   click() {
