@@ -9,16 +9,10 @@ import { AppState } from '../../app.state';
   styleUrls: ['user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-
-  users$ = Observable.of([
-    { id: 0, nickName: 'Damian' },
-    { id: 1, nickName: 'Daniel' },
-    { id: 2, nickName: 'Asia' },
-    { id: 3, nickName: 'Przemek' },
-  ]);
+  private users$: Observable<Map<string, any>>;
 
   constructor(private store: Store<AppState>) {
-    store.select('user').subscribe(console.log);
+    this.users$ = store.select('users').map((userState: Map<string, any>) => userState.get('items'));
   }
 
   ngOnInit() {

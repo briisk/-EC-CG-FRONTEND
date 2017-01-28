@@ -28,7 +28,7 @@ import { authReducer } from './auth/auth.reducer';
     StoreModule.provideStore({
       counter: counterReducer,
       board: boardReducer,
-      user: userReducer,
+      users: userReducer,
       auth: authReducer,
     }),
     StoreDevtoolsModule.instrumentOnlyWithExtension({
