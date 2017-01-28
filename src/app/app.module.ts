@@ -9,20 +9,23 @@ import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { LoginScreenComponent } from './login-screen/login-screen.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BoardComponent } from './board/board.component';
+import { boardReducer } from './board';
 
 @NgModule({
   declarations: [
     UserListComponent,
     AppComponent,
     CounterComponent,
-    LoginScreenComponent
+    LoginScreenComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    StoreModule.provideStore({ counter: counterReducer }),
+    StoreModule.provideStore({ counter: counterReducer, board: boardReducer }),
     StoreDevtoolsModule.instrumentOnlyWithExtension({
       maxAge: 5
     })

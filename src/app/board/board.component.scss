@@ -1,0 +1,11 @@
+.board {
+  .column {
+    display: block;
+    .row {
+      display: inline-block;
+      .box {
+        padding: 10px;
+      }
+    }
+  }
+}
