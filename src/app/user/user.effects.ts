@@ -29,9 +29,9 @@ export class UserEffects {
 
   @Effect() fetchActiveUsers$ = this.actions$
     .ofType(SET_CURRENT_USER)
-    .switchMap(() => {
-      return this.gameChannel.observeMessage('new_msg')
+    .switchMapTo(
+      this.gameChannel.observeMessage('new_msg')
         .map(msg => fetchActiveUsersSuccess(msg))
-        .catch((err) => Observable.of(fetchActiveUsersFailed(err)));
-    });
+        .catch((err) => Observable.of(fetchActiveUsersFailed(err)))
+    );
 }
