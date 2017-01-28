@@ -18,13 +18,13 @@ export class LoginScreenComponent {
     private router: Router
   ) {
     this.isLoginSuccess$ = store.select('auth')
-      .filter((userState: Map<string, any>) => !!userState && userState.size > 0)
-      .do((auth: any) => auth.toJS())
-      .map((userState: any) => userState.getIn(['currentUser', 'isSuccess']));
+      .filter((authState: Map<string, any>) => !!authState && authState.size > 0)
+      .do((auth: any) => console.log(auth.toJS()))
+      .map((authState: any) => authState.getIn(['auth', 'currentUser', 'isSuccess']));
 
     this.isLoginSuccess$
-      .filter(Boolean)
       .do(console.log)
+      .filter(Boolean)
       .subscribe(() => this.router.navigate(['/user-list']));
   }
 

@@ -20,12 +20,13 @@ export function authReducer(state: Map<string, any> = INITIAL_STATE, action: Act
     [LOGIN_USER]: () => {
       console.log('payload', action.payload);
       return state
-        .setIn(['auth', 'currentUser', 'nickName'], action.payload.nick);
+        .setIn(['currentUser', 'nickName'], action.payload.nick);
     },
     [SET_CURRENT_USER]: () => {
       console.log('payload', action.payload);
       return state
-        .setIn(['auth', 'currentUser', 'id'], action.payload);
+        .setIn(['currentUser', 'isSuccess'], true)
+        .setIn(['currentUser', 'id'], action.payload);
 
     },
     [CONNECTION_FAIL]: () => {
